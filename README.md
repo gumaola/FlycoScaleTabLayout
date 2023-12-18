@@ -1,6 +1,5 @@
 
-#原作者：https://github.com/li504799868/FlycoTabLayoutZ
-#因原作者托管与Jcenter，已经废弃，现在将其重新托管与Jitpack
+#原作者：https://github.com/li504799868/FlycoTabLayoutZ, 因原作者托管于Jcenter，已经废弃，现在将其重新托管与Jitpack
 
 --------------------------------------------
 
