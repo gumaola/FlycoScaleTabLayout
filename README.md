@@ -1,3 +1,8 @@
+
+#原作者：https://github.com/li504799868/FlycoTabLayoutZ, 因原作者托管于Jcenter，已经废弃，现在将其重新托管与Jitpack
+
+--------------------------------------------
+
 # FlycoTabLayoutZ
 在FlycoTabLayout的基础上，扩展出SlidingScaleTabLayout，实现滑动可以改变tab字体的大小的切换效果
 
