@@ -36,8 +36,8 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.flyco.tablayout'
-                artifactId = 'ScaleTabLayout'
+                groupId = 'com.github.gumaola'
+                artifactId = 'FlycoScaleTabLayout'
                 version = '1.3.3'
             }
         }
