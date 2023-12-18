@@ -1,0 +1,8 @@
+jdk:
+  - openjdk11
+before_install:
+  - ./scripts/prepareJitpackEnvironment.sh
+install:
+  - FILE="-Dfile=FlycoTabLayout_Lib-release.aar" #com-atifqamar-customtoast.aar 
+  - mvn install:install-file $FILE -DgroupId=com.github.gumaola -DartifactId=FlycoScaleTabLayout -Dversion=1.3.3 -Dpackaging=aar -DgeneratePom=true
+  #com.github.geek-atif                      #com-atifqamar-customtoast  #1.0
