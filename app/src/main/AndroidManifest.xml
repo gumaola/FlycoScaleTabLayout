@@ -12,7 +12,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.SlidingTabLayoutWithoutViewPagerActivity3" />
-        <activity android:name=".ui.SimpleHomeActivity">
+        <activity
+            android:name=".ui.SimpleHomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

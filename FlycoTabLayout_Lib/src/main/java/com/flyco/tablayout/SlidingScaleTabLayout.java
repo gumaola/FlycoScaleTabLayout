@@ -21,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -157,6 +158,8 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
 
     private ExtendTransformer extendTransformer;
 
+    private boolean isHoldFirstItem = false;
+
     public SlidingScaleTabLayout(Context context) {
         this(context, null, 0);
     }
@@ -189,11 +192,16 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
             mHeight = a.getDimensionPixelSize(0, ViewGroup.LayoutParams.WRAP_CONTENT);
             a.recycle();
         }
+
+        if (isHoldFirstItem) {
+            checkAndHoldFirstItem();
+        }
     }
 
     private void obtainAttributes(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingScaleTabLayout);
 
+        isHoldFirstItem = ta.getBoolean(R.styleable.SlidingScaleTabLayout_tl_holdFirstItem, false);
         mIndicatorStyle = ta.getInt(R.styleable.SlidingScaleTabLayout_tl_indicator_style, STYLE_NORMAL);
         mIndicatorColor = ta.getColor(R.styleable.SlidingScaleTabLayout_tl_indicator_color, Color.parseColor(mIndicatorStyle == STYLE_BLOCK ? "#4B6A87" : "#ffffff"));
         mIndicatorHeight = ta.getDimension(R.styleable.SlidingScaleTabLayout_tl_indicator_height,
@@ -266,6 +274,19 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         mTitles = new ArrayList<>();
         Collections.addAll(mTitles, titles);
         initViewPagerListener();
+    }
+
+    private void checkAndHoldFirstItem() {
+        setOnScrollChangeListener(new OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                Log.d("IIII", "scrollX = " + scrollX + ", scrollY = " + scrollY);
+                View firstItem = mTabsContainer.getChildAt(0);
+                if (firstItem == null) return;
+                firstItem.setElevation(1f);
+                firstItem.setTranslationX(scrollX);
+            }
+        });
     }
 
 

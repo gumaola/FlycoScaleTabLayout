@@ -22,11 +22,14 @@
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        app:tl_holdFirstItem="true"
         app:tl_indicator_color="@color/colorAccent"
         app:tl_indicator_corner_radius="3dp"
         app:tl_indicator_gravity="BOTTOM"
         app:tl_indicator_height="2dp"
         app:tl_indicator_width="7dp"
+        app:tl_indicator_width_equal_title="true"
+
         app:tl_openTextDmg="false"
         app:tl_tab_marginBottom="8dp"
 

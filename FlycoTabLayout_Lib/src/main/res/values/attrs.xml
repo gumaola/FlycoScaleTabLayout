@@ -292,6 +292,9 @@
         <!-- 是否开启文字的图片镜像 -->
         <attr name="tl_openTextDmg" format="boolean" />
 
+        <!-- 是否固定第一个item -->
+        <attr name="tl_holdFirstItem" format="boolean" />
+
         <!-- 未读消息的位置 -->
         <attr name="tl_tab_msg_marginTop" />
         <attr name="tl_tab_msg_marginRight" />
