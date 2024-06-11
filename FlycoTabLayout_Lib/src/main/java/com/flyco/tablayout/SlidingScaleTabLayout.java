@@ -1037,6 +1037,15 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         return (TextView) tabView.findViewById(R.id.tv_tab_title);
     }
 
+    public ImageView getTitleIcoView(int tab) {
+        View tabView = mTabsContainer.getChildAt(tab);
+        return (ImageView) tabView.findViewById(R.id.tv_tab_ico);
+    }
+
+    public LinearLayout getTabContainer() {
+        return mTabsContainer;
+    }
+
     //setter and getter
 
     // show MsgTipView
