@@ -29,6 +29,8 @@
         app:tl_indicator_height="2dp"
         app:tl_indicator_width="7dp"
         app:tl_indicator_width_equal_title="true"
+        
+        app:tl_tab_background="@mipmap/ic_launcher"
 
         app:tl_openTextDmg="false"
         app:tl_tab_marginBottom="8dp"
@@ -36,6 +38,8 @@
         app:tl_tab_padding="15dp"
         app:tl_tab_vertical_gravity="Bottom"
         app:tl_textBold="SELECT"
+        
+        app:tl_tab_space_equal="true"
 
         app:tl_textSelectColor="@color/colorAccent"
         app:tl_textSelectSize="20sp"

@@ -427,13 +427,14 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
      * 创建并添加tab
      */
     private void addTab(final int position, String title, View tabView) {
+        ConstraintLayout tv_tab_title_area = tabView.findViewById(R.id.tab_title_content);
         TextView tv_tab_title = (TextView) tabView.findViewById(R.id.tv_tab_title);
         if (tv_tab_title != null) {
 //            tv_tab_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, position == mCurrentTab ? mTextSelectSize : mTextUnSelectSize);
             tv_tab_title.setText(title);
             // 设置tab背景
             if (mTabBackgroundId != 0) {
-                tv_tab_title.setBackgroundResource(mTabBackgroundId);
+                tv_tab_title_area.setBackgroundResource(mTabBackgroundId);
             }
 //            if (TextUtils.isEmpty(title)) {
 //                tabView.setVisibility(View.GONE);
@@ -466,13 +467,14 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         for (int i = 0; i < mTabCount; i++) {
             View v = mTabsContainer.getChildAt(i);
 //            v.setPadding((int) mTabPadding, v.getPaddingTop(), (int) mTabPadding, v.getPaddingBottom());
+            ConstraintLayout tv_tab_title_area = v.findViewById(R.id.tab_title_content);
             TextView tv_tab_title = (TextView) v.findViewById(R.id.tv_tab_title);
             if (tv_tab_title != null) {
                 v.setPadding((int) mTabPadding, 0, (int) mTabPadding, 0);
                 tv_tab_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, i == mCurrentTab ? mTextSelectSize : mTextUnSelectSize);
                 tv_tab_title.setTextColor(i == mCurrentTab ? mTextSelectColor : mTextUnSelectColor);
                 // 设置选中状态
-                tv_tab_title.setSelected(i == mCurrentTab);
+                tv_tab_title_area.setSelected(i == mCurrentTab);
 
                 if (mTextAllCaps) {
                     tv_tab_title.setText(tv_tab_title.getText().toString().toUpperCase());
@@ -591,12 +593,13 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         for (int i = 0; i < mTabCount; ++i) {
             View tabView = mTabsContainer.getChildAt(i);
             final boolean isSelect = i == position;
+            final ConstraintLayout tv_tab_title_area = tabView.findViewById(R.id.tab_title_content);
             final TextView tab_title = (TextView) tabView.findViewById(R.id.tv_tab_title);
 
             if (tab_title != null) {
                 tab_title.setTextColor(isSelect ? mTextSelectColor : mTextUnSelectColor);
                 // 设置选中状态
-                tab_title.setSelected(isSelect);
+                tv_tab_title_area.setSelected(isSelect);
 
                 if (mTextBold == TEXT_BOLD_BOTH) {
                     tab_title.getPaint().setFakeBoldText(true);
