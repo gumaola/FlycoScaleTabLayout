@@ -270,7 +270,7 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         initViewPagerListener();
     }
 
-    private void checkAndHoldFirstItem() {
+    public void checkAndHoldFirstItem() {
         setOnScrollChangeListener(new OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
