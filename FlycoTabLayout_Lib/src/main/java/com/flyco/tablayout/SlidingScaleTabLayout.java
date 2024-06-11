@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -1040,6 +1041,11 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
     public ImageView getTitleIcoView(int tab) {
         View tabView = mTabsContainer.getChildAt(tab);
         return (ImageView) tabView.findViewById(R.id.tv_tab_ico);
+    }
+
+    public ConstraintLayout getTitleArea(int tab) {
+        View tabView = mTabsContainer.getChildAt(tab);
+        return (ConstraintLayout) tabView.findViewById(R.id.tab_title_content);
     }
 
     public LinearLayout getTabContainer() {
