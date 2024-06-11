@@ -158,8 +158,6 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
 
     private ExtendTransformer extendTransformer;
 
-    private boolean isHoldFirstItem = false;
-
     public SlidingScaleTabLayout(Context context) {
         this(context, null, 0);
     }
@@ -192,16 +190,11 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
             mHeight = a.getDimensionPixelSize(0, ViewGroup.LayoutParams.WRAP_CONTENT);
             a.recycle();
         }
-
-        if (isHoldFirstItem) {
-            checkAndHoldFirstItem();
-        }
     }
 
     private void obtainAttributes(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingScaleTabLayout);
 
-        isHoldFirstItem = ta.getBoolean(R.styleable.SlidingScaleTabLayout_tl_holdFirstItem, false);
         mIndicatorStyle = ta.getInt(R.styleable.SlidingScaleTabLayout_tl_indicator_style, STYLE_NORMAL);
         mIndicatorColor = ta.getColor(R.styleable.SlidingScaleTabLayout_tl_indicator_color, Color.parseColor(mIndicatorStyle == STYLE_BLOCK ? "#4B6A87" : "#ffffff"));
         mIndicatorHeight = ta.getDimension(R.styleable.SlidingScaleTabLayout_tl_indicator_height,
@@ -280,7 +273,6 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         setOnScrollChangeListener(new OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                Log.d("IIII", "scrollX = " + scrollX + ", scrollY = " + scrollY);
                 View firstItem = mTabsContainer.getChildAt(0);
                 if (firstItem == null) return;
                 firstItem.setElevation(1f);
@@ -358,7 +350,7 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
             tabView = LayoutInflater.from(mContext).inflate(R.layout.layout_scale_tab, mTabsContainer, false);
             TextView title = tabView.findViewById(R.id.tv_tab_title);
             // 设置tab的位置信息
-            setTabLayoutParams(title);
+            setTabLayoutParams(tabView);
             CharSequence pageTitle = mTitles == null ? mViewPager.getAdapter().getPageTitle(i) : mTitles.get(i);
             addTab(i, pageTitle.toString(), tabView);
         }
@@ -366,8 +358,10 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         updateTabStyles();
     }
 
-    private void setTabLayoutParams(TextView title) {
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) title.getLayoutParams();
+    private void setTabLayoutParams(View tabView) {
+        View content = tabView.findViewById(R.id.tab_title_content);
+
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) content.getLayoutParams();
         params.topMargin = mTabMarginTop;
         params.bottomMargin = mTabMarginBottom;
 
@@ -388,10 +382,10 @@ public class SlidingScaleTabLayout extends HorizontalScrollView implements ViewP
         }
 
 
-        title.setLayoutParams(params);
+        content.setLayoutParams(params);
 
         if (isDmgOpen()) {
-            ImageView imageView = (ImageView) ViewUtils.findBrotherView(title, R.id.tv_tab_title_dmg, 3);
+            ImageView imageView = tabView.findViewById(R.id.tv_tab_title_dmg);
             if (imageView == null) return;
             params = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
             params.topMargin = mTabMarginTop;
